@@ -22,7 +22,9 @@ console.log(phoneInserts[0]);
 // Autores
 let authorInserts = [];
 for (let i = 0; i < 20; i++) {
-  const query = `INSERT INTO AUTOR(ID, NOME)	VALUES (${i}, '${faker.name.firstName()}');\n`;
+  const query = `INSERT INTO AUTOR(ID, NOME, ENDERECO_ID, TELEFONE_ID)	VALUES (${i}, '${faker.name.firstName()}', ${faker.random.number(
+    19
+  )}, ${faker.random.number(19)});\n`;
   authorInserts.push(query);
   stream.write(query, "utf8");
 }
@@ -31,9 +33,11 @@ console.log(authorInserts[0]);
 // Editora
 let publishingCompany = [];
 for (let i = 0; i < 20; i++) {
-  const query = `INSERT INTO EDITORA(ID, NOME, CPNJ_EDITORA, ENDERECO_ID, TELEFONE_ID) VALUES (${i}, '${faker.name.firstName()}', '${faker.finance.account(
+  const query = `INSERT INTO EDITORA(ID, CNPJ_EDITORA, NOME, ENDERECO_ID, TELEFONE_ID) VALUES (${i}, '${faker.finance.account(
     4
-  )}', ${faker.random.number(20)}, ${faker.random.number(20)});\n`;
+  )}', '${faker.name.firstName()}', ${faker.random.number(
+    19
+  )}, ${faker.random.number(19)});\n`;
   publishingCompany.push(query);
   stream.write(query, "utf8");
 }
@@ -51,9 +55,9 @@ console.log(genderInserts[0]);
 // Usuários
 let usersInserts = [];
 for (let i = 0; i < 20; i++) {
-  const query = `INSERT INTO USUARIO (ID, NOME, LOGIN, PASSWORD, ENDERECO_ID, TELEFONE_ID) VALUES (${i}, '${faker.name.firstName()}', '${faker.name.lastName()}', '${faker.internet.userName()}', '${faker.internet.password()}', ${faker.random.number(
-    20
-  )}, ${faker.random.number(20)});\n`;
+  const query = `INSERT INTO USUARIO (ID, NOME, LOGIN, PASSWORD, ENDERECO_ID, TELEFONE_ID) VALUES (${i}, '${faker.name.firstName()} ${faker.name.lastName()}', '${faker.internet.userName()}', '${faker.internet.password()}', ${faker.random.number(
+    19
+  )}, ${faker.random.number(19)});\n`;
   usersInserts.push(query);
   stream.write(query, "utf8");
 }
@@ -63,9 +67,9 @@ console.log(usersInserts[0]);
 let booksInserts = [];
 for (let i = 0; i < 20; i++) {
   const query = `INSERT INTO LIVRO (ID, TITULO, EXEMPLAR, USUARIO_ID, AUTOR_ID, EDITORA_ID, GENERO_ID) VALUES (${i}, '${faker.name.title()}', ${i +
-    1}, ${faker.random.number(20)}, ${faker.random.number(
-    20
-  )}, ${faker.random.number(20)}, ${faker.random.number(20)});\n`;
+    1}, ${faker.random.number(19)}, ${faker.random.number(
+    19
+  )}, ${faker.random.number(19)}, ${faker.random.number(19)});\n`;
   booksInserts.push(query);
   stream.write(query, "utf8");
 }
@@ -77,7 +81,7 @@ let bookGenderId = 0;
 for (let i = 0; i < 20; i++) {
   for (let j = 0; j < 2; j++) {
     const query = `INSERT INTO GENERO_LIVRO (ID, LIVRO_ID, GENERO_ID) VALUES (${j +
-      bookGenderId}, ${i}, ${faker.random.number(20)});\n`;
+      bookGenderId}, ${i}, ${faker.random.number(19)});\n`;
     bookGender.push(query);
     stream.write(query, "utf8");
   }
@@ -91,28 +95,28 @@ let userGenderId = 0;
 for (let i = 0; i < 20; i++) {
   for (let j = 0; j < 2; j++) {
     const query = `INSERT INTO GENERO_USUARIO (ID, USUARIO_ID, GENERO_ID) VALUES (${j +
-      userGenderId}, ${i}, ${faker.random.number(20)});\n`;
+      userGenderId}, ${i}, ${faker.random.number(19)});\n`;
     userGender.push(query);
     stream.write(query, "utf8");
   }
   userGenderId += 2;
 }
-console.log(userGender);
-
 // Evento
 
 let event = [];
-let eventId = [];
+let eventId = 0;
 for (let i = 0; i < 20; i++) {
   for (let j = 0; j < 2; j++) {
     const query = `INSERT INTO GENERO_USUARIO (ID, USUARIO_ID, GENERO_ID) VALUES (${j +
-      userGenderId}, ${i}, ${faker.random.number(20)});\n`;
+      eventId}, ${i}, ${faker.random.number(19)});\n`;
     event.push(query);
 
     stream.write(query, "utf8");
   }
-  userGenderId += 2;
+  eventId += 2;
 }
+
+console.log(event);
 
 stream.on("finish", () => {
   console.log("wrote all data to file");
