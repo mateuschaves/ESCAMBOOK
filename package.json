@@ -1,0 +1,15 @@
+{
+  "name": "BD-I",
+  "version": "0.2.1",
+  "description": "Gerador de inserts",
+  "main": "index.js",
+  "repository": "https://github.com/mateuschaves/ESCAMBOOK.git",
+  "author": "Mateus Henrique <mateushenriquechaves1@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "faker": "^4.1.0"
+  },
+  "scripts": {
+    "start": "node index.js"
+  }
+}
