@@ -444,7 +444,7 @@ SELECT * FROM HISTORICO;
 
 /* Consultas Simples */
 
-/* 1 Ranking dos três gêneros mais escritos */
+/* 1 Ranking dos trÃªs gÃªneros mais escritos */
 SELECT COUNT(GENERO_ID) AS "Quantidade", GENERO_ID 
 FROM GENERO_LIVRO
 GROUP BY GENERO_ID
@@ -459,30 +459,46 @@ GROUP BY LIVRO_ID
 ORDER BY "Quantidade" DESC
 FETCH FIRST 1 ROWS ONLY;
 
-/* 3 Quantas trocas de livros foram feitas no mês Novembro ?*/
+/* 3 Quantas trocas de livros foram feitas no mÃªs Novembro ?*/
 SELECT to_char(DATA_TROCA, 'MONTH') AS "Mes", COUNT(DATA_TROCA) as "Quantidade de trocas"
 FROM HISTORICO
 WHERE to_char(DATA_TROCA, 'MONTH') = 'NOVEMBRO '
 GROUP BY to_char(DATA_TROCA, 'MONTH');
 
 
-/* 4 Qual usuário recebeu mais livros ?*/
-SELECT USUARIO_DESTINATARIO_ID AS "ID do usuário ", COUNT(USUARIO_DESTINATARIO_ID) AS "Quantidade de livros recebidos"
+/* 4 Qual usuÃ¡rio recebeu mais livros ?*/
+SELECT USUARIO_DESTINATARIO_ID AS "ID do usuÃ¡rio ", COUNT(USUARIO_DESTINATARIO_ID) AS "Quantidade de livros recebidos"
 FROM HISTORICO
 GROUP BY USUARIO_DESTINATARIO_ID
 FETCH FIRST 1 ROWS ONLY;
 
-/*5 Qual endere�o cadastrado mais repetido ?*/
+/*5 Qual endereço cadastrado mais repetido ?*/
 SELECT RUA, BAIRRO, CIDADE, COUNT(CEP) AS "Quantidade", CEP FROM ENDERECO
 GROUP BY CEP, RUA, BAIRRO CIDADE, "Quantidade"
 ORDER BY "Quantidade" DESC
 FETCH FIRST 1 ROWS ONLY;
 
+                                                                                                                               
+/* 6 Região com mais usuários cadastrados*/                                                                                                                        /Região com mais usuários cadastrados/
+SELECT COUNT (ENDERECO_ID) AS "Quantidade", ENDERECO_ID
+FROM USUARIO
+JOIN ENDERECO
+ON ENDERECO_ID = ENDERECO.ID
+GROUP BY ENDERECO_ID        
+ORDER BY "Quantidade" DESC
+FETCH FIRST 1 ROW ONLY;
+                                                                                                                               
+/* 7 Quais as editora mais livros cadastrados*/
+SELECT COUNT(EDITORA_ID ) AS "Quantidade",  EDITORA_ID 
+FROM LIVRO
+GROUP BY EDITORA_ID 
+ORDER BY "Quantidade" DESC
+FETCH FIRST 3 ROWS ONLY;                                                                                                                             
 
 /*Consultas complexas*/
 
-/*1 Qual o nome, id e telefone do usuário que recebeu mais livros ?*/
-SELECT USUARIO_DESTINATARIO_ID AS "ID do usuário", COUNT(USUARIO_DESTINATARIO_ID) AS "Quantidade de livros recebidos", NUMERO, NOME
+/*1 Qual o nome, id e telefone do usuÃ¡rio que recebeu mais livros ?*/
+SELECT USUARIO_DESTINATARIO_ID AS "ID do usuÃ¡rio", COUNT(USUARIO_DESTINATARIO_ID) AS "Quantidade de livros recebidos", NUMERO, NOME
 FROM HISTORICO
 JOIN USUARIO
 ON USUARIO.ID = HISTORICO.USUARIO_DESTINATARIO_ID
@@ -491,8 +507,8 @@ ON TELEFONE.ID = HISTORICO.USUARIO_DESTINATARIO_ID
 GROUP BY HISTORICO.USUARIO_DESTINATARIO_ID, NUMERO, NOME
 FETCH FIRST 1 ROWS ONLY;
 
-/*2 Ranking dos três gêneros mais escritos, mostrando o gênero e o seu ID*/
-SELECT COUNT(GENERO_LIVRO.GENERO_ID) AS "Quantidade", GENERO.GENERO AS "Gênero", GENERO_LIVRO.GENERO_ID AS "ID do gênero" 
+/*2 Ranking dos trÃªs gÃªneros mais escritos, mostrando o gÃªnero e o seu ID*/
+SELECT COUNT(GENERO_LIVRO.GENERO_ID) AS "Quantidade", GENERO.GENERO AS "GÃªnero", GENERO_LIVRO.GENERO_ID AS "ID do gÃªnero" 
 FROM GENERO_LIVRO
 JOIN GENERO
 ON GENERO.ID = GENERO_LIVRO.GENERO_ID
