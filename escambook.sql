@@ -462,7 +462,7 @@ FETCH FIRST 1 ROWS ONLY;
 /* 3 Quantas trocas de livros foram feitas no mês Novembro ?*/
 SELECT to_char(DATA_TROCA, 'MONTH') AS "Mes", COUNT(DATA_TROCA) as "Quantidade de trocas"
 FROM HISTORICO
-WHERE to_char(DATA_TROCA, 'MONTH') = 'NOVEMBER '
+WHERE to_char(DATA_TROCA, 'MONTH') = 'NOVEMBRO '
 GROUP BY to_char(DATA_TROCA, 'MONTH');
 
 
@@ -472,6 +472,14 @@ FROM HISTORICO
 GROUP BY USUARIO_DESTINATARIO_ID
 FETCH FIRST 1 ROWS ONLY;
 
+/*5 Qual endere�o cadastrado mais repetido ?*/
+SELECT RUA, BAIRRO, CIDADE, COUNT(CEP) AS "Quantidade", CEP FROM ENDERECO
+GROUP BY CEP, RUA, BAIRRO CIDADE, "Quantidade"
+ORDER BY "Quantidade" DESC
+FETCH FIRST 1 ROWS ONLY;
+
+
+/*Consultas complexas*/
 
 /*1 Qual o nome, id e telefone do usuário que recebeu mais livros ?*/
 SELECT USUARIO_DESTINATARIO_ID AS "ID do usuário", COUNT(USUARIO_DESTINATARIO_ID) AS "Quantidade de livros recebidos", NUMERO, NOME
@@ -491,4 +499,5 @@ ON GENERO.ID = GENERO_LIVRO.GENERO_ID
 GROUP BY GENERO_LIVRO.GENERO_ID, GENERO.GENERO
 ORDER BY "Quantidade" DESC
 FETCH FIRST 3 ROWS ONLY;
+
 
