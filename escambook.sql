@@ -499,6 +499,23 @@ FETCH FIRST 3 ROWS ONLY;
 SELECT NOME FROM EDITORA
 WHERE CNPJ_EDITORA IS NULL;
                                                                                                                                
+ /* 9 livro mais popular*/                                                                                                                              /* 9 livro mais popular*/
+SELECT  COUNT (TITULO) AS "Quantidade", TITULO
+FROM LIVRO
+GROUP BY  TITULO
+ORDER BY "Quantidade" DESC
+FETCH FIRST 1 ROW ONLY;
+                                                                                                                               
+/* 10 CIDADES COM MAIS USUÁRIOS */
+SELECT  COUNT(CIDADE) AS "BALANÇO", CIDADE
+FROM ENDERECO
+JOIN USUARIO
+ON ENDERECO.ID = ENDERECO_ID
+GROUP BY CIDADE
+ORDER BY "BALANÇO" DESC
+FETCH FIRST 3 ROWS ONLY;
+ 
+                                                                                                                               
 /*Consultas complexas*/
 
 /*1 Qual o nome, id e telefone do usuÃ¡rio que recebeu mais livros ?*/
