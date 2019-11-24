@@ -459,3 +459,9 @@ GROUP BY LIVRO_ID
 ORDER BY "Quantidade" DESC
 FETCH FIRST 1 ROWS ONLY;
 
+/* 3 Quantas trocas de livros foram feitas no mês Novembro ?*/
+SELECT to_char(DATA_TROCA, 'MONTH') AS "Mes", COUNT(DATA_TROCA) as "Quantidade de trocas"
+FROM HISTORICO
+WHERE to_char(DATA_TROCA, 'MONTH') = 'NOVEMBER '
+GROUP BY to_char(DATA_TROCA, 'MONTH');
+
