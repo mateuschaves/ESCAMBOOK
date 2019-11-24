@@ -185,12 +185,12 @@ INSERT INTO ENDERECO(ID, RUA, BAIRRO, CIDADE, CEP) VALUES (1, 'Nader Route', 'Tr
 INSERT INTO ENDERECO(ID, RUA, BAIRRO, CIDADE, CEP) VALUES (2, 'McDermott Pine', 'Lake Myleston', 'Wymanview', '21927' );
 INSERT INTO ENDERECO(ID, RUA, BAIRRO, CIDADE, CEP) VALUES (3, 'Kreiger Harbors', 'Meganeburgh', 'East Marlee', '12293' );
 INSERT INTO ENDERECO(ID, RUA, BAIRRO, CIDADE, CEP) VALUES (4, 'Langosh Landing', 'West Kyraville', 'New Jessica', '84501-8274' );
-INSERT INTO ENDERECO(ID, RUA, BAIRRO, CIDADE, CEP) VALUES (5, 'Krystina Way', 'Mekhichester', 'DuBuqueville', '86302' );
+INSERT INTO ENDERECO(ID, RUA, BAIRRO, CIDADE, CEP) VALUES (5, 'Krystina Way', 'Mekhichester', 'DuBuqueville', '21927' );
 INSERT INTO ENDERECO(ID, RUA, BAIRRO, CIDADE, CEP) VALUES (6, 'Fahey Prairie', 'Rudyport', 'Gaychester', '76118-6858' );
 INSERT INTO ENDERECO(ID, RUA, BAIRRO, CIDADE, CEP) VALUES (7, 'Feil Crest', 'Creminville', 'East Haylie', '75748-2382' );
 INSERT INTO ENDERECO(ID, RUA, BAIRRO, CIDADE, CEP) VALUES (8, 'Jeanie Harbors', 'Marianeborough', 'Rohanshire', '73370' );
 INSERT INTO ENDERECO(ID, RUA, BAIRRO, CIDADE, CEP) VALUES (9, 'Linnea Hills', 'Port Kristy', 'Aurorehaven', '63704' );
-INSERT INTO ENDERECO(ID, RUA, BAIRRO, CIDADE, CEP) VALUES (10, 'Ruecker Lights', 'New Eldredside', 'West Jaclynmouth', '53111' );
+INSERT INTO ENDERECO(ID, RUA, BAIRRO, CIDADE, CEP) VALUES (10, 'Ruecker Lights', 'New Eldredside', 'West Jaclynmouth', '21927' );
 INSERT INTO ENDERECO(ID, RUA, BAIRRO, CIDADE, CEP) VALUES (11, 'Shawn Trail', 'New Joyfort', 'Port Isadorefurt', '25915' );
 INSERT INTO ENDERECO(ID, RUA, BAIRRO, CIDADE, CEP) VALUES (12, 'Nils Curve', 'Port Giles', 'South Archibald', '38364-5001' );
 INSERT INTO ENDERECO(ID, RUA, BAIRRO, CIDADE, CEP) VALUES (13, 'Adrain Spurs', 'Krajcikburgh', 'Kristoferstad', '66157' );
@@ -200,6 +200,7 @@ INSERT INTO ENDERECO(ID, RUA, BAIRRO, CIDADE, CEP) VALUES (16, 'Mossie Dam', 'Ka
 INSERT INTO ENDERECO(ID, RUA, BAIRRO, CIDADE, CEP) VALUES (17, 'Feeney Grove', 'Quintonland', 'Lonzofurt', '84551' );
 INSERT INTO ENDERECO(ID, RUA, BAIRRO, CIDADE, CEP) VALUES (18, 'Leopoldo Ports', 'Norafurt', 'North Bernieceview', '58792' );
 INSERT INTO ENDERECO(ID, RUA, BAIRRO, CIDADE, CEP) VALUES (19, 'Catherine Stravenue', 'Welchtown', 'Eulaville', '37695-5387' );
+
 INSERT INTO TELEFONE(ID, NUMERO) VALUES (0, '861-552-6682 x743');
 INSERT INTO TELEFONE(ID, NUMERO) VALUES (1, '576-966-9425 x92432');
 INSERT INTO TELEFONE(ID, NUMERO) VALUES (2, '704-672-4523 x985');
@@ -441,4 +442,11 @@ INSERT INTO HISTORICO (ID, USUARIO_DESTINATARIO_ID, USUARIO_REMETENTE_ID, LIVRO_
 SELECT * FROM HISTORICO;
 
 
-/* Consultas */
+/* Consultas Simples */
+
+/* 1 Ranking dos três gêneros mais escritos */
+SELECT COUNT(GENERO_ID) AS "Quantidade", GENERO_ID 
+FROM GENERO_LIVRO
+GROUP BY GENERO_ID
+ORDER BY "Quantidade" DESC
+FETCH FIRST 3 ROWS ONLY;
