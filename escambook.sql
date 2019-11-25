@@ -1321,3 +1321,12 @@ FROM EVENTO
   ON ENDERECO.ID = USUARIO.ENDERECO_ID
 GROUP BY CIDADE
 ORDER BY "Quantidade de ofertas";
+
+/*6 Qual o nome do genero que possui mais livros*/
+SELECT GENERO, COUNT(*) AS "Quantidade de livros"
+FROM GENERO_LIVRO
+  JOIN GENERO
+  ON GENERO.ID = GENERO_ID
+GROUP BY GENERO
+ORDER BY "Quantidade de livros" DESC
+FETCH FIRST 1 ROWS ONLY;
