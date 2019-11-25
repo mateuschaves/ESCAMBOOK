@@ -488,7 +488,7 @@ GROUP BY ENDERECO_ID
 ORDER BY "Quantidade" DESC
 FETCH FIRST 1 ROW ONLY;
                                                                                                                                
-/* 7 Quais as editora mais livros cadastrados*/
+/* 7 Quais as editora com mais livros cadastrados*/
 SELECT COUNT(EDITORA_ID ) AS "Quantidade",  EDITORA_ID 
 FROM LIVRO
 GROUP BY EDITORA_ID 
@@ -499,14 +499,14 @@ FETCH FIRST 3 ROWS ONLY;
 SELECT NOME FROM EDITORA
 WHERE CNPJ_EDITORA IS NULL;
                                                                                                                                
- /* 9 livro mais popular*/                                                                                                                              /* 9 livro mais popular*/
+ /* 9 livro mais popular*/                                                                                                                        
 SELECT  COUNT (TITULO) AS "Quantidade", TITULO
 FROM LIVRO
 GROUP BY  TITULO
 ORDER BY "Quantidade" DESC
 FETCH FIRST 1 ROW ONLY;
                                                                                                                                
-/* 10 CIDADES COM MAIS USUÁRIOS */
+/* 10 CIDADES COM MAIS USU�?RIOS */
 SELECT  COUNT(CIDADE) AS "BALANÇO", CIDADE
 FROM ENDERECO
 JOIN USUARIO
@@ -536,5 +536,12 @@ ON GENERO.ID = GENERO_LIVRO.GENERO_ID
 GROUP BY GENERO_LIVRO.GENERO_ID, GENERO.GENERO
 ORDER BY "Quantidade" DESC
 FETCH FIRST 3 ROWS ONLY;
+
+/*3 Nome de todos os usuário que gostam do gênero 'Infrastructure'*/
+SELECT NOME, GENERO FROM GENERO_USUARIO
+JOIN USUARIO
+ON USUARIO.ID = USUARIO_ID AND GENERO_ID = 8
+JOIN GENERO
+ON GENERO.ID = GENERO_ID
 
 
