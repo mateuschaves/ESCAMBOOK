@@ -1350,3 +1350,20 @@ FROM GENERO_USUARIO
   ON GENERO.ID = GENERO_ID
 GROUP BY GENERO
 ORDER BY "Quantidade de usuários" DESC
+
+/*9) Autores com mais livros publicados*/
+SELECT NOME, COUNT(*) AS "Quantidade de livros publicados"
+FROM LIVRO
+  JOIN AUTOR
+  ON AUTOR.ID = LIVRO.AUTOR_ID
+GROUP BY NOME
+ORDER BY "Quantidade de livros publicados" DESC;
+
+/*10) Top 10 Ranking de usuários que mais receberam livros*/
+SELECT NOME, COUNT(*) AS "Quantidade de livros recebidos"
+FROM HISTORICO
+  JOIN USUARIO
+  ON USUARIO.ID = USUARIO_DESTINATARIO_ID
+GROUP BY NOME
+ORDER BY "Quantidade de livros recebidos" DESC
+FETCH FIRST 10 ROWS ONLY;
