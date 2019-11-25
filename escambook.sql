@@ -1332,7 +1332,8 @@ ORDER BY "Quantidade de livros" DESC
 FETCH FIRST 1 ROWS ONLY;
 
 /*7) Cidade em que se ofereceu mais livros*/
-SELECT CIDADE, ENDERECO.ID COUNT(*) AS "Quantidade de livros oferecidos"
+SELECT CIDADE, ENDERECO.ID COUNT
+(*) AS "Quantidade de livros oferecidos"
 FROM EVENTO
   JOIN USUARIO
   ON USUARIO.ID = EVENTO.USUARIO_ID AND TIPO = 'OFERECER'
@@ -1341,3 +1342,11 @@ FROM EVENTO
 GROUP BY CIDADE
 ORDER BY "Quantidade de livros oferecidos" DESC
 FETCH FIRST 1 ROWS ONLY;
+
+/*8) Generos mais usados pelos usuários*/
+SELECT GENERO, COUNT(*) AS "Quantidade de usuários"
+FROM GENERO_USUARIO
+  JOIN GENERO
+  ON GENERO.ID = GENERO_ID
+GROUP BY GENERO
+ORDER BY "Quantidade de usuários" DESC
