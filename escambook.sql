@@ -1312,3 +1312,12 @@ GROUP BY CIDADE
 ORDER BY "Quantidade de recebimentos" DESC
 FETCH FIRST 1 ROWS ONLY;
 
+/*5 Ranking das cidades em que se oferecem mais livros*/
+SELECT CIDADE, COUNT(*) AS "Quantidade de ofertas"
+FROM EVENTO
+  JOIN USUARIO
+  ON USUARIO.ID = USUARIO_ID
+  JOIN ENDERECO
+  ON ENDERECO.ID = USUARIO.ENDERECO_ID
+GROUP BY CIDADE
+ORDER BY "Quantidade de ofertas";
